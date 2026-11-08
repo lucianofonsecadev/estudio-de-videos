@@ -1,0 +1,25 @@
+# segredos — nunca subir
+credencial.json
+token.json
+token-*.json
+client_secret*.json
+.mcp.json
+*.bat
+
+# dados do canal
+postados.json
+final/
+bruto/
+trabalho/
+biblioteca/
+*.log
+
+# mídia pesada
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.pcraft
+
+__pycache__/
+*.pyc
