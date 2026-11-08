@@ -1,0 +1,119 @@
+{
+ "eventos": [
+  {
+   "tipo": "faixa",
+   "t": [
+    0,
+    75.8
+   ],
+   "l1": "começamos a vida a dois com",
+   "l2": "R$ 2.500"
+  },
+  {
+   "tipo": "numero",
+   "t": [
+    20.3,
+    21.9
+   ],
+   "linhas": [
+    [
+     "ágio da casa",
+     "R$ 10 mil",
+     ""
+    ],
+    [
+     "ficou pra gente",
+     "R$ 2.500",
+     "g"
+    ]
+   ],
+   "aceso": 1
+  },
+  {
+   "tipo": "numero",
+   "t": [
+    21.9,
+    28.5
+   ],
+   "linhas": [
+    [
+     "ágio da casa",
+     "R$ 10 mil",
+     ""
+    ],
+    [
+     "ficou pra gente",
+     "R$ 2.500",
+     "g"
+    ]
+   ],
+   "aceso": 2
+  },
+  {
+   "tipo": "palavra",
+   "t": [
+    43.2,
+    52.0
+   ],
+   "txt": "compramos tudo usado"
+  },
+  {
+   "tipo": "numero",
+   "t": [
+    68.0,
+    72.8
+   ],
+   "linhas": [
+    [
+     "aluguel",
+     "R$ 500",
+     "r"
+    ]
+   ]
+  },
+  {
+   "tipo": "palavra",
+   "t": [
+    73.2,
+    76.0
+   ],
+   "txt": "3 meses de aluguel adiantado"
+  },
+  {
+   "tipo": "palavra",
+   "t": [
+    76.0,
+    80.9
+   ],
+   "txt": "zerou o dinheiro"
+  },
+  {
+   "tipo": "faixa",
+   "t": [
+    75.8,
+    81
+   ],
+   "l1": "comenta aí:",
+   "l2": "com quanto você começou?"
+  }
+ ],
+ "corrigir": [
+  [
+   "ágil",
+   "ágio"
+  ],
+  [
+   "Sambaia,",
+   "Samambaia,"
+  ],
+  [
+   "só fausado,",
+   "sofá usado,"
+  ],
+  [
+   "Luciano tem um",
+   "Luciano ter um"
+  ]
+ ],
+ "musica": "No Rush - Dyalla.mp3"
+}
