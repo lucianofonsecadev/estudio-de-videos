@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estúdio de vídeos · Luciano Fonseca</title>
+<meta name="description" content="Python + YouTube Data API: transforma vídeo longo em Shorts e publica no YouTube por um painel web local.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2318122B'/%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%237C3AED'/%3E%3Cpath d='M26 21v22l18-11z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--tinta:#18122B;--tinta2:#241B3D;--vio:#7C3AED;--vioc:#A78BFA;--fundo:#F6F3FC;--texto:#2A2340;--cinza:#5F5779;--linha:#E4DCF5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:17px/1.65 Manrope,system-ui,sans-serif}
+a{color:var(--vio)}
+img{max-width:100%;height:auto;display:block;border-radius:16px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.hero{background:var(--tinta);color:#fff;padding:72px 0 64px}
+.tag{display:inline-block;background:var(--tinta2);color:var(--vioc);font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+h1{font:800 clamp(38px,6vw,64px)/1.05 "Bricolage Grotesque",sans-serif;letter-spacing:-1px;margin:0 0 18px}
+h1 span{color:var(--vioc)}
+.lead{font-size:20px;color:#DCD5EE;max-width:760px;margin:0 0 28px}
+.botoes{display:flex;flex-wrap:wrap;gap:12px}
+.b{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:12px;font-weight:700;text-decoration:none}
+.b1{background:var(--vio);color:#fff}.b1:hover{background:#6D28D9}
+.b2{border:2px solid #4A3F6B;color:#fff}.b2:hover{border-color:var(--vioc)}
+section{padding:64px 0}
+h2{font:800 clamp(28px,4vw,40px)/1.15 "Bricolage Grotesque",sans-serif;letter-spacing:-.5px;margin:0 0 12px;color:var(--tinta)}
+.sub{color:var(--cinza);margin:0 0 28px;max-width:720px}
+.figura{background:#fff;border:1px solid var(--linha);border-radius:20px;padding:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px}
+.card h3{margin:0 0 6px;font-size:18px;color:var(--tinta)}
+.card p{margin:0;color:var(--cinza);font-size:15px}
+.num{font:800 14px Manrope;color:var(--vio);letter-spacing:.06em}
+.dois{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.tec{display:flex;flex-wrap:wrap;gap:10px}
+.tec span{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;color:var(--tinta)}
+.escuro{background:var(--tinta);color:#fff}.escuro h2{color:#fff}.escuro .sub{color:#C9C2DD}
+footer{padding:36px 0;color:var(--cinza);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Python · YouTube Data API · FFmpeg · Whisper</span>
+    <h1>Estúdio de <span>vídeos</span></h1>
+    <p class="lead">Um vídeo longo entra, Shorts prontos saem — com legenda animada, cartões de valores e capa própria —
+    e um painel web publica e agenda tudo no YouTube. Feito para o canal <a href="https://www.youtube.com/@2tabom" style="color:#fff">2 TÁ BOM</a>.</p>
+    <div class="botoes">
+      <a class="b b1" href="https://github.com/lucianofonsecadev/estudio-de-videos">Ver o código no GitHub</a>
+      <a class="b b2" href="https://www.youtube.com/@2tabom/shorts">Ver os Shorts no canal</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Do vídeo longo ao Short</h2>
+    <p class="sub">O roteiro de corte vem da transcrição; o resto é automático: enquadramento vertical, legenda palavra por
+    palavra, valores falados em cartões, música baixinha e volume padronizado.</p>
+    <div class="figura"><img src="antes-depois.png" alt="Antes: vídeo 16:9 do casal. Depois: Short 9:16 com título, legenda e cartões de valores" loading="lazy"></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <p class="sub">Cinco etapas em Python, cada uma num script pequeno.</p>
+    <div class="cards">
+      <div class="card"><span class="num">01</span><h3>Transcrição</h3><p>Whisper local com o tempo de cada palavra, em português.</p></div>
+      <div class="card"><span class="num">02</span><h3>Cortes pelo som</h3><p>FFmpeg acha as pausas de verdade e tira; repetições saem pela transcrição.</p></div>
+      <div class="card"><span class="num">03</span><h3>Enquadramento 9:16</h3><p>Recorte no rosto, ou modo largo com fundo desfocado quando são duas pessoas.</p></div>
+      <div class="card"><span class="num">04</span><h3>Legenda e cartões</h3><p>Pillow desenha as camadas; legenda ASS em karaokê; loudnorm −14 LUFS.</p></div>
+      <div class="card"><span class="num">05</span><h3>Capa própria</h3><p>Arte gerada em camadas e colocada no fim do vídeo para ser escolhida como capa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Capas geradas</h2>
+    <p class="sub">Foto, texto curto e o valor numa pílula, no padrão visual do canal.</p>
+    <div class="figura"><img src="capas-shorts.jpg" alt="Seis capas verticais de Shorts com textos como R$ 2.500, R$ 150 mil e vídeo de IA" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="escuro">
+  <div class="wrap">
+    <h2>Postador: publica e agenda no YouTube</h2>
+    <p class="sub">Painel web que roda só no computador (servidor em Python puro + HTML, CSS e JS sem bibliotecas).
+    Login OAuth 2.0 do Google, envio retomável em pedaços, agendamento, capa, playlist, validação de título e
+    hashtags, limite de cota e confirmação antes de cada envio.</p>
+    <div class="dois">
+      <img src="postador-fila.png" alt="Tela da fila de postagem com os Shorts, prévia do vídeo e formulário" loading="lazy">
+      <img src="postador-calendario.png" alt="Calendário semanal com os Shorts agendados" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Arquitetura</h2>
+    <p class="sub">Sem servidor na nuvem: arquivos e token ficam no computador; só a API do YouTube é chamada.</p>
+    <div class="figura"><img src="diagrama-arquitetura.png" alt="Diagrama: arquivos de vídeo e fichas no computador, postar.py, Google OAuth e YouTube Data API" loading="lazy"></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Tecnologias</h2>
+    <div class="tec">
+      <span>Python 3.12</span><span>YouTube Data API v3</span><span>Google OAuth 2.0</span><span>FFmpeg</span>
+      <span>OpenAI Whisper</span><span>Pillow</span><span>http.server</span><span>HTML · CSS · JavaScript</span><span>GitHub Pages</span>
+    </div>
+  </div>
+</section>
+
+<footer>Feito por <a href="https://github.com/lucianofonsecadev">Luciano Fonseca</a> · <a href="https://github.com/lucianofonsecadev/estudio-de-videos">código</a></footer>
+</body>
+</html>
